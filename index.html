@@ -1,0 +1,129 @@
+<!doctype html> 
+<html> 
+<head> 
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--[if lt IE 9]>
+        <script src="http://cdn.bootcss.com/html5shiv/3.7.0/html5shiv.min.js"></script>
+        <script src="http://cdn.bootcss.com/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+    <title></title> 
+</head>
+<body>
+    <div id='wrapper'>
+        <div id="player">
+        	
+        	<ul>
+        				<li class="play" data-src='http://storage.live.com/items/93775941D7DC3E27!171?a.mp3'>雪暖晴岚(风晴雪主题曲)</li>
+        				<li class="play" data-src='http://storage.live.com/items/93775941D7DC3E27!168?a.mp3'>风晴雪独白(第一结局)</li>
+        				<li class="play" data-src='http://storage.live.com/items/93775941D7DC3E27!169?a.mp3'>风晴雪独白(第二结局)</li>
+        				<li class="play" data-src='http://storage.live.com/items/93775941D7DC3E27!167?a.mp3'>芳华如梦(巽芳主题音乐)</li>
+        				<li class="play" data-src='http://storage.live.com/items/93775941D7DC3E27!172?a.mp3'>幽夜苍茫·变调(风晴雪哼唱歌曲)</li>
+        				<li class="play" data-src="http://storage.live.com/items/93775941D7DC3E27!173?a.mp3">云音泛天(欧阳少恭主题曲)</li>
+        				<li class="play" data-src="http://storage.live.com/items/93775941D7DC3E27!166?a.mp3">标题界面音乐(剑魂琴心、少恭与屠苏合奏版)</li>
+        				<li class="play" data-src="http://storage.live.com/items/93775941D7DC3E27!170?a.mp3">星河涛声(主角休息时播放版)</li>
+        	</ul>
+        	<p>
+        		
+        		<button id="btn_play">Play</button>
+        		<button id="btn_pause">Pause</button>
+        		<button id="btn_stop">Stop</button>
+        		<button id="btn_prev">Prev</button>
+        		<button id="btn_next">Next</button>
+        		<button id="btn_mute">Mute</button>
+        		<button id="btn_muteoff">Muteoff</button>
+        		<button id="btn_next10">Next 10 seconds</button>
+        		<button id="btn_prev10">Prev 10 seconds</button>
+        	</p>
+        	<p id="msg"></p>
+        	<p id="played"></p>
+
+        </div>
+
+
+    </div>
+<script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+<script src="mplayer.js"></script>
+<script>
+	$(function(){
+		window.player=mplayer('.play');
+		player.event('loadstart',function(){
+			$('#msg').html('客户端开始请求数据');
+		});
+
+		player.event('progress',function(){
+			$('#msg').html('客户端正在请求数据');
+		});
+
+		player.event('play',function(){
+			$('#msg').html('正在播放');
+		});
+
+		player.event('pause',function(){
+			$('#msg').html('已暂停');
+		});
+
+		player.event('loadedmetadata',function(){
+			$('#msg').html('成功获取资源长度');
+		});
+
+		player.event('canplay',function(){
+			$('#msg').html('已缓存部分资源,可以播放');
+		});
+
+		player.event('canplaythrough',function(){
+			$('#msg').html('资源全部缓存完毕,可以播放');
+		});
+
+		player.event('seeking',function(){
+			$('#msg').html('寻找中');
+		});
+		player.event('seeked',function(){
+			$('#msg').html('寻找完毕');
+		});
+		player.event('ended',function(){
+			$('#msg').html('播放结束');
+		});
+
+
+
+		$('#btn_play').click(function(){
+			player.play();
+		});
+		$('#btn_pause').click(function(){
+			player.pause();
+		});
+		$('#btn_stop').click(function(){
+			player.stop();
+		});
+		$('#btn_prev').click(function(){
+			player.prev();
+		});
+		$('#btn_next').click(function(){
+			player.next();
+		});
+		$('#btn_mute').click(function(){
+			player.mute(1);
+		});
+		$('#btn_muteoff').click(function(){
+			player.mute(0);
+		});
+		$('#btn_next10').click(function(){
+			player.current(player.current()+10);
+		});
+		$('#btn_prev10').click(function(){
+			player.current(player.current()-10);
+		});
+
+
+		setInterval(function(){
+			var info=player.playInfo();
+			$('#played').html('Played:'+info.played+" Current:"+info.currentTime+" Total:"+info.duration);
+		},500);
+
+
+
+
+	});
+</script>
+</body>
+</html>
