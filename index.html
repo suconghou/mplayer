@@ -6,33 +6,73 @@
         <script src="http://cdn.bootcss.com/html5shiv/3.7.0/html5shiv.min.js"></script>
         <script src="http://cdn.bootcss.com/respond.js/1.3.0/respond.min.js"></script>
     <![endif]-->
-    <title></title> 
+    <title>Mplayer Demo</title>
+    <style>	
+    	*{
+    		padding: 0;
+    		margin: 0; 
+    	}
+    	html{
+    		background:url(http://suconghou.sinaapp.com/fc0302e56e32422b854f30eb9da416c4.jpg) no-repeat center; 
+    		background-size: cover;
+    		height: 100%;
+    	}
+    	body{
+    		height: 100%;
+    	}
+    	input,button{
+    		outline: none;
+    	}
+		#wrapper{
+			background:rgba(0,0,0,0.5);
+			color: #fff;
+			font-family: "Microsoft Yahei";
+			line-height: 30px; 
+			width: 800px;
+			margin: 0 auto;
+			height: 100%;
+		}
+		.btn{
+			padding:5px 12px; 
+			border: none;
+			background-color: #f66;
+			cursor: pointer;
+			color:#fff;
+		}
+		.btn:hover{
+			background-color: #f44;
+		}
+		#player{
+			margin:0 40px;
+			padding:20px; 
+		}
+    </style> 
 </head>
 <body>
     <div id='wrapper'>
         <div id="player">
         	
         	<ul>
-        				<li class="play" data-src='http://storage.live.com/items/93775941D7DC3E27!171?a.mp3'>雪暖晴岚(风晴雪主题曲)</li>
-        				<li class="play" data-src='http://storage.live.com/items/93775941D7DC3E27!168?a.mp3'>风晴雪独白(第一结局)</li>
-        				<li class="play" data-src='http://storage.live.com/items/93775941D7DC3E27!169?a.mp3'>风晴雪独白(第二结局)</li>
-        				<li class="play" data-src='http://storage.live.com/items/93775941D7DC3E27!167?a.mp3'>芳华如梦(巽芳主题音乐)</li>
-        				<li class="play" data-src='http://storage.live.com/items/93775941D7DC3E27!172?a.mp3'>幽夜苍茫·变调(风晴雪哼唱歌曲)</li>
-        				<li class="play" data-src="http://storage.live.com/items/93775941D7DC3E27!173?a.mp3">云音泛天(欧阳少恭主题曲)</li>
-        				<li class="play" data-src="http://storage.live.com/items/93775941D7DC3E27!166?a.mp3">标题界面音乐(剑魂琴心、少恭与屠苏合奏版)</li>
-        				<li class="play" data-src="http://storage.live.com/items/93775941D7DC3E27!170?a.mp3">星河涛声(主角休息时播放版)</li>
+				<li class="play" data-src='http://storage.live.com/items/93775941D7DC3E27!168?a.mp3'>风晴雪独白(第一结局)</li>
+				<li class="play" data-src='http://storage.live.com/items/93775941D7DC3E27!169?a.mp3'>风晴雪独白(第二结局)</li>
+				<li class="play" data-src='http://storage.live.com/items/93775941D7DC3E27!171?a.mp3'>雪暖晴岚(风晴雪主题曲)</li>
+				<li class="play" data-src='http://storage.live.com/items/93775941D7DC3E27!167?a.mp3'>芳华如梦(巽芳主题音乐)</li>
+				<li class="play" data-src='http://storage.live.com/items/93775941D7DC3E27!172?a.mp3'>幽夜苍茫·变调(风晴雪哼唱歌曲)</li>
+				<li class="play" data-src="http://storage.live.com/items/93775941D7DC3E27!173?a.mp3">云音泛天(欧阳少恭主题曲)</li>
+				<li class="play" data-src="http://storage.live.com/items/93775941D7DC3E27!166?a.mp3">标题界面音乐(剑魂琴心、少恭与屠苏合奏版)</li>
+				<li class="play" data-src="http://storage.live.com/items/93775941D7DC3E27!170?a.mp3">星河涛声(主角休息时播放版)</li>
         	</ul>
         	<p>
         		
-        		<button id="btn_play">Play</button>
-        		<button id="btn_pause">Pause</button>
-        		<button id="btn_stop">Stop</button>
-        		<button id="btn_prev">Prev</button>
-        		<button id="btn_next">Next</button>
-        		<button id="btn_mute">Mute</button>
-        		<button id="btn_muteoff">Muteoff</button>
-        		<button id="btn_next10">Next 10 seconds</button>
-        		<button id="btn_prev10">Prev 10 seconds</button>
+        		<button id="btn_play" class="btn">Play</button>
+        		<button id="btn_pause" class="btn">Pause</button>
+        		<button id="btn_stop" class="btn">Stop</button>
+        		<button id="btn_prev" class="btn">Prev</button>
+        		<button id="btn_next" class="btn">Next</button>
+        		<button id="btn_mute" class="btn">Mute</button>
+        		<button id="btn_muteoff" class="btn">Muteoff</button>
+        		<button id="btn_next10" class="btn">Next 10 seconds</button>
+        		<button id="btn_prev10" class="btn">Prev 10 seconds</button>
         	</p>
         	<p id="msg"></p>
         	<p id="played"></p>
@@ -82,6 +122,9 @@
 		});
 		player.event('ended',function(){
 			$('#msg').html('播放结束');
+			setTimeout(function(){
+				player.next();
+			},3000);
 		});
 
 
