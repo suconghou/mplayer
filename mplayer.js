@@ -12,13 +12,13 @@
 				this.helper();
 				var audioContext = new window.AudioContext();
 				this.playerAnalyser = audioContext.createAnalyser();
-				
+
 				var playerSource = audioContext.createMediaElementSource(this.player);
 				playerSource.connect(this.playerAnalyser);
-				
+
 				this.playerAnalyser.connect(audioContext.destination);
 
-				
+
 
 				this.source=dom;
 				this.ready(0);
@@ -50,10 +50,10 @@
 			{
 				var playerTimeDomainData = new Uint8Array($.fn.mplayer.playerAnalyser.fftSize);
 				$.fn.mplayer.playerAnalyser.getByteTimeDomainData(playerTimeDomainData);
-				
+
 				var volumn = Array.max(playerTimeDomainData).value - Array.min(playerTimeDomainData).value,
 						volumnStep = 0.2;
-				
+
 				this.volumnCurrent = this.volumnCurrent || 0;
 				if (this.volumnCurrent < volumn) {
 					this.volumnCurrent += volumnStep;
@@ -63,7 +63,7 @@
 				var h = (1 - this.volumnCurrent / 256) * 360,
 						s = (volumn / 256) * 30 + 30 * this.volumnCurrent / 256 ,
 						l =  (volumn / 256) * 30 + 20;
-				
+
 				document.body.style.backgroundColor = 'hsl(' + h + ',' + s + '%, ' +  l + '%)';
 			},
 			plot:function()
@@ -96,18 +96,19 @@
 				    {
 				    	$.fn.mplayer.timer=requestAnimationFrame(drawMeter);
 				    }
-				   
-				}
+
+				};
 				drawMeter();
 			},
 			event:function(e,fun)
 			{
 				this.player.addEventListener(e,fun);
+				return this;
 			},
 			helper:function()
 			{
 				window.AudioContext = window.AudioContext || window.webkitAudioContext;
-				
+
 				(function() {
 				    var lastTime = 0;
 				    var vendors = ['webkit', 'moz'];
@@ -160,7 +161,7 @@
 					return {value : value, index : index};
 				};
 
-					
+
 			},
 			play:function()
 			{
@@ -174,7 +175,7 @@
 				this.timer=null;
 				if(!this.player.paused)
 				{
-					this.player.pause(); 
+					this.player.pause();
 					this.player.currentTime = 0.0;
 					window.cancelAnimationFrame(this.timer);
 				}
@@ -187,12 +188,12 @@
 			},
 			next:function()
 			{
-				
+
 				this.ready(this.index+1).play();
 			},
 			prev:function()
 			{
-				
+
 				this.ready(this.index-1).play();
 			},
 			mute:function(on)
@@ -222,7 +223,7 @@
 
 			current:function(time)
 			{
-				
+
 				if(time)
 				{
 					var total=this.player.duration;
@@ -235,7 +236,7 @@
 						time=total;
 					}
 					this.player.currentTime=time;
-				
+
 				}
 				else
 				{
@@ -254,10 +255,10 @@
 					paused:this.player.paused,
 					list:this.source,
 					index:this.index
-				}
+				};
 				info.played=(info.currentTime*100/info.duration).toFixed(2)+'%';
 				return info;
-				
+
 			}
 
 		};
