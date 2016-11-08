@@ -139,18 +139,46 @@
 	{
 		if(cfg&&cfg.btn&&cfg.init)
 		{
-			var playerList={};
+			var playerList=[];
 			var btnlist=document.querySelectorAll(cfg.btn);
 			var bootstrap=function(e)
 			{
-				var id=cfg.key?cfg.key.call(this,this,e):this.dataset.playerId;
+				var id=cfg.key?cfg.key.call(this,this,e):this.parentNode.dataset.id;
 				if(!playerList[id])
 				{
 					var player=new basePlay();
 					cfg.init.call(this,player,this,e);
 					playerList[id]=player;
+					player.call=call;
 					this.click();
 				}
+			};
+			var call=function(player,fn,param)
+			{
+				var players;
+				if(!(player instanceof basePlay))
+				{
+					if(!(playerList[player] instanceof basePlay))
+					{
+						players=playerList;
+					}
+					else
+					{
+						player=playerList[player];
+					}
+				}
+				(players||[player]).forEach(function(player)
+				{
+					var func=player[fn];
+					if(typeof func=='function')
+					{
+						func.apply(player,param);
+					}
+					else
+					{
+						console.warn('player has no method '+fn.toString());
+					}
+				});
 			};
 			for (var i = 0, len = btnlist.length; i < len; i++)
 			{

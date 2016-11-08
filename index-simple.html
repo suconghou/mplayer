@@ -27,7 +27,7 @@
 			background:rgba(0,0,0,0.5);
 			color: #fff;
 			font-family: "Microsoft Yahei";
-			width: 800px;
+			width: 860px;
 			margin: 0 auto;
 			height: 100%;
             font-size: 14px;
@@ -129,15 +129,17 @@
     <div id='wrapper'>
         <div id="player">
         	<h2>Mplayer Demo </h2>
-        	<h3>Git: <a href="https://github.com/suconghou/mplayer">https://github.com/suconghou/mplayer</a>	</h3>
+        	<h3>Git:
+                <a href="https://github.com/suconghou/mplayer">https://github.com/suconghou/mplayer</a>
+            </h3>
         	<div class="play-item" data-id='1'>
                 <li class="play" data-src='http://storage.live.com/items/93775941D7DC3E27!168?a.mp3'>风晴雪独白(第一结局)</li>
                 <p class="progress-bar"><i></i></p>
                 <button class="btn doplay">Play</button>
                 <button class="btn dopause">Pause</button>
                 <button class="btn dostop">Stop</button>
-                <button class="btn doprev">Prev</button>
-                <button class="btn donext">Next</button>
+                <button class="btn doplayall">PlayAll</button>
+                <button class="btn dopauseall">PauseAll</button>
                 <button class="btn domute">Mute</button>
                 <button class="btn domuteoff">Muteoff</button>
                 <button class="btn donext10">Next 10 seconds</button>
@@ -149,8 +151,8 @@
                 <button class="btn doplay">Play</button>
                 <button class="btn dopause">Pause</button>
                 <button class="btn dostop">Stop</button>
-                <button class="btn doprev">Prev</button>
-                <button class="btn donext">Next</button>
+                <button class="btn doplayall">PlayAll</button>
+                <button class="btn dopauseall">PauseAll</button>
                 <button class="btn domute">Mute</button>
                 <button class="btn domuteoff">Muteoff</button>
                 <button class="btn donext10">Next 10 seconds</button>
@@ -162,8 +164,8 @@
                 <button class="btn doplay">Play</button>
                 <button class="btn dopause">Pause</button>
                 <button class="btn dostop">Stop</button>
-                <button class="btn doprev">Prev</button>
-                <button class="btn donext">Next</button>
+                <button class="btn doplayall">PlayAll</button>
+                <button class="btn dopauseall">PauseAll</button>
                 <button class="btn domute">Mute</button>
                 <button class="btn domuteoff">Muteoff</button>
                 <button class="btn donext10">Next 10 seconds</button>
@@ -175,8 +177,8 @@
                 <button class="btn doplay">Play</button>
                 <button class="btn dopause">Pause</button>
                 <button class="btn dostop">Stop</button>
-                <button class="btn doprev">Prev</button>
-                <button class="btn donext">Next</button>
+                <button class="btn doplayall">PlayAll</button>
+                <button class="btn dopauseall">PauseAll</button>
                 <button class="btn domute">Mute</button>
                 <button class="btn domuteoff">Muteoff</button>
                 <button class="btn donext10">Next 10 seconds</button>
@@ -188,8 +190,8 @@
                 <button class="btn doplay">Play</button>
                 <button class="btn dopause">Pause</button>
                 <button class="btn dostop">Stop</button>
-                <button class="btn doprev">Prev</button>
-                <button class="btn donext">Next</button>
+                <button class="btn doplayall">PlayAll</button>
+                <button class="btn dopauseall">PauseAll</button>
                 <button class="btn domute">Mute</button>
                 <button class="btn domuteoff">Muteoff</button>
                 <button class="btn donext10">Next 10 seconds</button>
@@ -201,8 +203,8 @@
                 <button class="btn doplay">Play</button>
                 <button class="btn dopause">Pause</button>
                 <button class="btn dostop">Stop</button>
-                <button class="btn doprev">Prev</button>
-                <button class="btn donext">Next</button>
+                <button class="btn doplayall">PlayAll</button>
+                <button class="btn dopauseall">PauseAll</button>
                 <button class="btn domute">Mute</button>
                 <button class="btn domuteoff">Muteoff</button>
                 <button class="btn donext10">Next 10 seconds</button>
@@ -214,8 +216,8 @@
                 <button class="btn doplay">Play</button>
                 <button class="btn dopause">Pause</button>
                 <button class="btn dostop">Stop</button>
-                <button class="btn doprev">Prev</button>
-                <button class="btn donext">Next</button>
+                <button class="btn doplayall">PlayAll</button>
+                <button class="btn dopauseall">PauseAll</button>
                 <button class="btn domute">Mute</button>
                 <button class="btn domuteoff">Muteoff</button>
                 <button class="btn donext10">Next 10 seconds</button>
@@ -228,8 +230,8 @@
                 <button class="btn doplay">Play</button>
                 <button class="btn dopause">Pause</button>
                 <button class="btn dostop">Stop</button>
-                <button class="btn doprev">Prev</button>
-                <button class="btn donext">Next</button>
+                <button class="btn doplayall">PlayAll</button>
+                <button class="btn dopauseall">PauseAll</button>
                 <button class="btn domute">Mute</button>
                 <button class="btn domuteoff">Muteoff</button>
                 <button class="btn donext10">Next 10 seconds</button>
@@ -303,6 +305,18 @@
                 progress.parentNode.classList.remove('active')
                 console.log('paused');
             });
+
+            item.querySelector('.doplayall').addEventListener('click',function(e)
+            {
+                player.call([],'play');
+                console.log('doplayall');
+            },false);
+            item.querySelector('.dopauseall').addEventListener('click',function(e)
+            {
+                player.call([],'pause');
+                console.log('dopauseall');
+            },false);
+
         }
 
     });
