@@ -121,6 +121,7 @@
 			},
 			destroy:function()
 			{
+				player.pause();
 				player=null;
 			}
 		};
