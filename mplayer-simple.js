@@ -118,6 +118,10 @@
 					player.addEventListener(e,fun,false);
 				}
 				return this;
+			},
+			destory:function()
+			{
+				player=null;
 			}
 		};
 		return base;
@@ -184,6 +188,7 @@
 			{
 				addEventListenerOnce(btnlist[i],'click',bootstrap);
 			}
+			return {playerList:playerList,call:call};
 		}
 		else
 		{
