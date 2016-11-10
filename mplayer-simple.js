@@ -121,8 +121,11 @@
 			},
 			destroy:function()
 			{
-				player.pause();
-				player=null;
+				if(player)
+				{
+					player.pause();
+					player=null;
+				}
 			}
 		};
 		return base;
