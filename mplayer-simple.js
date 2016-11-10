@@ -119,7 +119,7 @@
 				}
 				return this;
 			},
-			destory:function()
+			destroy:function()
 			{
 				player=null;
 			}
